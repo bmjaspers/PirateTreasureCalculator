@@ -1,1 +1,5 @@
-angular.module('pirates', []);
+(function() {
+	"use strict";
+	
+	angular.module('pirates', []);
+})();
