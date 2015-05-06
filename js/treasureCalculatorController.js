@@ -11,8 +11,8 @@ function TreasureCalculatorController(treasureCalculatorService) {
     vm.results = [];
 
     function _calculate() {
-        if (!pirateform.$valid || !vm.numberOfPirates) {
-            vm.results.push({ error: true, errorMsg: "There must be at least 2 pirates."});
+        if (!vm.numberOfPirates) {
+            return;
         }
         else {
             // causes the spinner to show in the list
