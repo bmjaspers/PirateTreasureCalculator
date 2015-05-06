@@ -10,9 +10,17 @@
     </head>
     <body ng-app="pirates">
         <div id="app-container" ng-controller="treasureCalculatorController as vm">
-            <h2>Pirate Treasure Calculator</h2>
+            <div id="header-container">
+                <header>
+                    <h1>Pirate Treasure Calculator</h1>
+                </header>
+            </div>
             <div id="input-container">
-                <input type="number" ng-model="vm.numberOfPirates" /><button ng-click="vm.calculate()">Calculate arrr treasure</button>
+                <div id="question-container">
+                    How many pirates?<br />
+                    <input type="number" ng-model="vm.numberOfPirates" />
+                </div>
+                <button ng-click="vm.calculate()">Calculate the treasure</button>
             </div>
             <div id="output-container" >
                 <ul>

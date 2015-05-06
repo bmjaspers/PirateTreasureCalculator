@@ -1,26 +1,50 @@
+/* need this for ng-cloak to work since angularjs is included at the end of body instead of in head */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 
-#app-container {
-    text-align: center;
+/* color scheme generated from: http://colorschemedesigner.com/csd-3.5/ */
+body {
+    background-color: #BF7630;
+    margin: 0;
+    padding: 0;
 }
 
-#app-container div {
-    margin: 20px auto;
+#app-container {
+    text-align: center;
+    margin: 0;
+}
 
+#app-container div + div {
+    margin: 20px auto;
+}
+
+#header-container {
+    background-color: #A65100;
+    padding: 10px;
+}
+
+#question-container {
+    display: inline-block;
+}
+
+#input-container input {
+    background-color: #A65100;
+    border: 2px ridge black;
+    border-radius: 5px;
+    text-align: center;
 }
 
 #input-container button {
     margin-left: 10px;
     border-radius: 5px;
-    border: none;
+    border: 2px solid #A65100;
     padding: 10px;
-    background-color: #CFCB06;
+    background-color: #F0FC00;
 }
 
 #input-container button:hover {
-     background-color: #DEDC17;
+     background-color: #F7FE72;
 }
 
 #output-container ul {
@@ -32,7 +56,7 @@
 
 #output-container li {
     border-radius: 10px;
-    background-color: #DEDC17;
+    background-color: #F0FC00;
     padding: 3px;
     margin: 0;
     border: 0;
