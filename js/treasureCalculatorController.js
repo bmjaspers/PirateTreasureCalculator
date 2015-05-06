@@ -10,20 +10,24 @@ function TreasureCalculatorController(treasureCalculatorService) {
     vm.calculate = _calculate;
     vm.results = [];
 
-    
     function _calculate() {
-        // causes the spinner to show in the list
-        var newLength = vm.results.push({ dataLoading: true});
-        
-        if (vm.results.length > 10) {
-                    vm.result.splice(0, 1);
+        if (!pirateform.$valid || !vm.numberOfPirates) {
+            vm.results.push({ error: true, errorMsg: "There must be at least 2 pirates."});
         }
-        
-        treasureCalculatorService.getNumberOfCoins(vm.numberOfPirates)
-            .then(function(result) {
-                vm.results[newLength - 1] = result;   
-            }, function(err) {
-                vm.results[newLength - 1] = { error: true };
-            });
+        else {
+            // causes the spinner to show in the list
+            var newLength = vm.results.push({ dataLoading: true});
+            
+            if (vm.results.length > 10) {
+                vm.result.splice(0, 1);
+            }
+            
+            treasureCalculatorService.getNumberOfCoins(vm.numberOfPirates)
+                .then(function(result) {
+                    vm.results[newLength - 1] = result;   
+                }, function(err) {
+                    vm.results[newLength - 1] = { error: true, errorMsg: "There was an error running the calculation." };
+                });
+        }
     }
 }

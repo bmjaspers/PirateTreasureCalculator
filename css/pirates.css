@@ -27,6 +27,9 @@ body {
 #question-container {
     display: inline-block;
 }
+#input-container * {
+    vertical-align: middle;
+}
 
 #input-container input {
     background-color: #A65100;
@@ -47,6 +50,10 @@ body {
      background-color: #F7FE72;
 }
 
+#input-container button:disabled {
+     background-color: #F0FC00;
+}
+
 #output-container ul {
     list-style-type: none;
     width: 25%;
@@ -64,4 +71,8 @@ body {
 
 #output-container li + li {
     margin-top: 5px;
+}
+
+.error {
+    background-color: #F00 !important;
 }

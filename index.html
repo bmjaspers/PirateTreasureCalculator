@@ -16,11 +16,14 @@
                 </header>
             </div>
             <div id="input-container">
-                <div id="question-container">
-                    How many pirates?<br />
-                    <input type="number" ng-model="vm.numberOfPirates" />
-                </div>
-                <button ng-click="vm.calculate()">Calculate the treasure</button>
+                <form name="pirateform">
+                    <div id="question-container">
+                        How many pirates?<br />
+                        <input type="number" min="2" ng-model="vm.numberOfPirates" ng-class="{ 'error' : !pirateform.$valid }" /><br />
+                        <span ng-show="!pirateform.$valid">There must be at least 2 pirates</span>
+                    </div>
+                    <button ng-click="vm.calculate()" ng-disabled="!pirateform.$valid">Calculate the treasure</button>
+                </form>
             </div>
             <div id="output-container" >
                 <ul>
@@ -30,7 +33,7 @@
                             <span ng-show="!result.dataLoading">There be at least {{result.numberOfCoins}} doubloons for {{result.numberOfPirates}} pirates.</span>
                         </span>
                         <span ng-show="result.error">
-                            There be an error!
+                            {{result.errorMsg}}
                         </span>
                     </li>
                 </ul>
