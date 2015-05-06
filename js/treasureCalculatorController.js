@@ -20,6 +20,7 @@ function TreasureCalculatorController(treasureCalculatorService) {
             
             if (vm.results.length > 10) {
                 vm.results.splice(0, 1);
+                newLength--;
             }
             
             treasureCalculatorService.getNumberOfCoins(vm.numberOfPirates)
