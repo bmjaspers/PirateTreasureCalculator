@@ -13,6 +13,8 @@ TreasureCalculatorService.$inject = ['$http', '$q']
     function _getNumberOfCoins(numberOfPirates) {
         var d = $q.defer();
         
+        // if we have the result in cache, copy it to a new object and return it
+        // we want the user to a new result for each request
         if (cachedResults[numberOfPirates]) {
             d.resolve(angular.copy(cachedResults[numberOfPirates]));
         }
