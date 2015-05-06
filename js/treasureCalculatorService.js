@@ -1,11 +1,9 @@
 angular.module('pirates')
     .factory('treasureCalculatorService', TreasureCalculatorService);
 
-TreasureCalculatorService.$inject = ['$http', '$q']
+TreasureCalculatorService.$inject = ['$http', '$q', '$localStorage']
     
- function TreasureCalculatorService ($http, $q) {
-    var cachedResults = {};
-     
+ function TreasureCalculatorService ($http, $q, $localStorage) {
     return {
             getNumberOfCoins: _getNumberOfCoins
     }; 
@@ -15,13 +13,18 @@ TreasureCalculatorService.$inject = ['$http', '$q']
         
         // if we have the result in cache, copy it to a new object and return it
         // we want the user to a new result for each request
-        if (cachedResults[numberOfPirates]) {
-            d.resolve(angular.copy(cachedResults[numberOfPirates]));
+        var cached = $localStorage.getObject(numberOfPirates);
+        
+        if (cached['numberOfCoins']) {
+            d.resolve(angular.copy(cached));
         }
         else {
             $http.get('http://pirate.azurewebsites.net/api/Pirate/' + numberOfPirates).success(function(data){
-                var result = { numberOfPirates: numberOfPirates, numberOfCoins: data}
-                cachedResults[numberOfPirates] = result;
+                var result = { numberOfPirates: numberOfPirates, numberOfCoins: data};
+                
+                // The returned value isn't expected to change, so let's stuff it in
+                // localStorage for returning users
+                $localStorage.setObject(numberOfPirates, result);
                 
                 d.resolve(result);
             })
