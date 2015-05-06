@@ -1,0 +1,43 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+#app-container {
+    text-align: center;
+}
+
+#app-container div {
+    margin: 20px auto;
+
+}
+
+#input-container button {
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    background-color: #CFCB06;
+}
+
+#input-container button:hover {
+     background-color: #DEDC17;
+}
+
+#output-container ul {
+    list-style-type: none;
+    width: 25%;
+    margin: auto;
+    padding: 0;
+}
+
+#output-container li {
+    border-radius: 10px;
+    background-color: #DEDC17;
+    padding: 3px;
+    margin: 0;
+    border: 0;
+}
+
+#output-container li + li {
+    margin-top: 5px;
+}
