@@ -9,26 +9,21 @@ function TreasureCalculatorController(treasureCalculatorService) {
     vm.numberOfPirates = 3;
     vm.calculate = _calculate;
     vm.results = [];
-    
-    // this feels kind of hacky, but for each request we push an empty object into dataLoading
-    // so that we can display a spinner for each separate request. This plays nice
-    // with ng-repeat
-    vm.dataLoading = [];
+
     
     function _calculate() {
-        vm.dataLoading.push({});
+        // causes the spinner to show in the list
+        var newLength = vm.results.push({ dataLoading: true});
+        
+        if (vm.results.length > 10) {
+                    vm.result.splice(0, 1);
+        }
         
         treasureCalculatorService.getNumberOfCoins(vm.numberOfPirates)
             .then(function(result) {
-                vm.dataLoading.pop();
-                vm.results.push(result);
-                
-                if (vm.results.length > 10) {
-                    vm.result.splice(0, 1);
-                }
+                vm.results[newLength - 1] = result;   
             }, function(err) {
-                vm.dataLoading.pop();
-                alert('There was an error calculating the coins!')
+                vm.results[newLength - 1] = { error: true };
             });
     }
 }

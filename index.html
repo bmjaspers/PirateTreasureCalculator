@@ -25,9 +25,14 @@
             <div id="output-container" >
                 <ul>
                     <li ng-repeat="result in vm.results" ng-cloak>
-                    There be at least {{result.numberOfCoins}} doubloons for {{result.numberOfPirates}} pirates.
+                        <span ng-show="!result.error">
+                            <img id="spinner" ng-src="img/spinner.gif" ng-show="result.dataLoading">
+                            <span ng-show="!result.dataLoading">There be at least {{result.numberOfCoins}} doubloons for {{result.numberOfPirates}} pirates.</span>
+                        </span>
+                        <span ng-show="result.error">
+                            There be an error!
+                        </span>
                     </li>
-                    <li ng-repeat="loading in vm.dataLoading" ng-cloak><img id="spinner" ng-src="img/spinner.gif"></li>
                 </ul>
                 
             </div>
